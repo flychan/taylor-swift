@@ -1,0 +1,28 @@
+#!/bin/bash -e
+
+version=""
+
+create_version_h()
+{
+    echo "---------------------------------------------------------"
+    echo "Create version.h"
+    echo "---------------------------------------------------------"
+    rm -f version.h
+    echo "#ifndef _VERSION_H_"                        > version.h
+    echo "#define _VERSION_H_"                        >> version.h
+    echo ""                                           >> version.h
+    echo "#define PROJECT_VERSION \""$version"\""     >> version.h
+    echo ""					      >> version.h
+    echo "#endif"				      >> version.h
+}
+
+echo "make for Project Taylor-Swift"
+
+version=$(git describe)
+
+create_version_h
+
+gcc main.c -o project_Taylor-Swift
+
+echo "make for Project Taylor-Swift end"
+echo "---------------------------------------------------------"
